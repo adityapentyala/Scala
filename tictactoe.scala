@@ -1,5 +1,6 @@
 object tictactoe {
 
+  //assignment of global variables
   var whoseTurn = "O"
   var winner = " "
   var gameOver = false
@@ -7,16 +8,18 @@ object tictactoe {
                                          Array(" ", " ", " "),
                                          Array(" ", " ", " ") )
 
+  //the main function that runs
   def main(args: Array[String]): Unit ={
     print_instructions()
 
+    //loop thhat continues the game while the game is not over
     while(!gameOver){
       print_grid(grid)
       player_move(whoseTurn, grid)
     }
-
   }
-
+  
+  //This function prints out instructions at the beginning
   def print_instructions(): Unit ={
     println("INSTRUCTIONS:")
     println("The grid is of the form")
@@ -46,6 +49,7 @@ object tictactoe {
     println("GAME BEGINS")
   }
 
+  //this function prints the grid after every move
   def print_grid(grid: Array[Array[String]]): Unit ={
     println("|---|---|---|")
     for (i <- 0 to 2; j <- 0 to 2){
@@ -63,6 +67,7 @@ object tictactoe {
     }
   }
 
+  //this function makes a player's move
   def player_move(turn: String, grid: Array[Array[String]]): Unit ={
     var coordinate_input = scala.io.StdIn.readLine(s"Where would you like to place your $turn? ")
     var coordinate = coordinate_input.split(",").map(_.toInt)
@@ -79,11 +84,13 @@ object tictactoe {
 
   }
 
+  //this function switches the players' turns
   def switch_turn(): Unit ={
     if (whoseTurn == "O"){whoseTurn = "X"}
     else {whoseTurn = "O"}
   }
 
+  //this function checks if any player has won
   def check_for_win(): Unit ={
     if (grid(0)(0) == "O" && grid(0)(1) == "O" && grid(0)(2) == "O"){winner = "O"; there_is_a_winner()}
     else if (grid(1)(0) == "O" && grid(1)(1) == "O" && grid(1)(2) == "O"){winner = "O"; there_is_a_winner()}
@@ -103,6 +110,7 @@ object tictactoe {
     else if (grid(0)(2) == "X" && grid(1)(1) == "X" && grid(2)(0) == "X"){winner = "X"; there_is_a_winner()}
   }
 
+  //this function checks if there is a tie ,and if so, ends the game
   def check_if_tie(): Unit ={
     if (grid(0)(0) != " " && grid(0)(1) != " " && grid(0)(2) != " " && grid(1)(0) != " " && grid(1)(1) != " "
         && grid(1)(2) != " " && grid(2)(0) != " " && grid(2)(1) != " " && grid(2)(2) != " " && !gameOver){
@@ -113,6 +121,7 @@ object tictactoe {
     }
   }
 
+  //this function congratulates the winner and ends the game
   def there_is_a_winner(): Unit ={
     print_grid(grid)
     println("GAME OVER")
