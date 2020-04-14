@@ -3,7 +3,6 @@ import scala.util.Random
 
 object Hangman {
   var word: String = ""
-  var lettersinword : Array[String] = Array()
   var hiddenWord :Array[String] = Array()
   var gameOver = false
   var chances = 6
