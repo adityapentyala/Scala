@@ -9,6 +9,7 @@ object Hangman {
   var chances = 6
 
   def main(args: Array[String]): Unit = {
+    print_instructions()
     chooseWord()
     for (_ <- 0 until word.length){hiddenWord = hiddenWord :+ "_"}
     drawfig()
@@ -41,7 +42,7 @@ object Hangman {
       print(char+" ")
     }
     println()
-    println(s"You have $chances chances left.")
+    println(s"You have $chances wrong guesses left.")
     println()
   }
 
@@ -67,6 +68,19 @@ object Hangman {
     println("GAME OVER")
     if (chances == 0){println(s"Better luck next time! The word was '$word'")}
     else{println("Congratulations, you have guessed the right word!")}
+  }
+
+  def print_instructions(): Unit ={
+    println("WELCOME TO HANGMAN!")
+    println("  INSTRUCTIONS:")
+    println("-> The goal of the game is to guess the word by guessing alphabets one at a time.")
+    println("-> Make sure you type in your guesses one at a time.")
+    println("-> eg. GUESS A LETTER: E")
+    println("-> DONOT guess the same letter again if you had previously gotten it wrong. You will lose a chance both times.")
+    println("-> If you guess for a second time a letter you had previously gotten right, don't worry, you will not lose a chance.")
+    println("-> Always keep Caps Lock ON.")
+    println("-> That's pretty much it. Enjoy!")
+    println()
   }
 
   def drawfig(): Unit ={
