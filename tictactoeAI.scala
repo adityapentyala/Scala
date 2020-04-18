@@ -30,7 +30,9 @@ object tictactoeAI {
         game_over = isTerminalState(board)
       }
       else {
+        println()
         val user_input = scala.io.StdIn.readLine(s"Where would you like to place your $user? ")
+        println()
         val user_action_arr = user_input.split(",").map(_.toInt)
         val user_action = (user_action_arr(0), user_action_arr(1))
         board = result(board, user_action)
