@@ -283,12 +283,13 @@ object tictactoeAI {
         print("|")
       }
     }
+    println("When choosing your symbol, type in either X or O")
     println("To place your symbol, you must enter the coordinate where you wish to place your symbol.")
     println("Input must be given in the form x,y with no space or brackets")
     println("For example, if you wish to place your symbol in the middle, you must enter '1,1'")
     println("Example: ")
     println("Where would you like to place your O? 1,1")
-    println("In case of illegal placement, the system will prompt you to try again.")
+    println("Make sure you DONOT place your symbol in an invalid state.")
     println("That's all. Have fun!")
     println()
   }
