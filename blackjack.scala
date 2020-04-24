@@ -127,6 +127,9 @@ class Player(dealer: Dealer) {
     for (card <- hand.cardsinhand) {
       if (card.cardnumber == "Ace") {
         aceval = scala.io.StdIn.readLine("What do you want the value of your ace to be (1/11)? ").toInt
+        while (aceval != 1 || aceval != 11){
+          aceval = scala.io.StdIn.readLine("Invalid response! Please enter a valid action: ").toInt
+        }
         card.cardval = aceval
       }
     }
