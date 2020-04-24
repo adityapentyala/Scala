@@ -241,7 +241,7 @@ object blackjack {
   def print_instructions(): Unit = {
     println("WELCOME TO BLACKJACK!")
     println("Please make sure that you are familiar with basic blackjack gameplay before playing.")
-    println("Visit https://www.blackjackapprenticeship.com/how-to-play-blackjack/ to do so.")
+    println("Visit https://www.blackjackapprenticeship.com/how-to-play-blackjack/ if you are not.")
     println("   Rules of the House:-")
     println("1. NO BETS. This is a friendly single player game of blackjack.")
     println("2. If you and the dealer both go over 21, it is a tie.")
