@@ -1,23 +1,23 @@
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
-class Card(number: String, suit: String, value: Int) {
-  val cardnumber: String = number
+class Card(rank: String, suit: String, value: Int) {
+  val cardrank: String = rank
   val cardsuit: String = suit
-  val cardname: String = cardnumber + "of" + cardsuit
+  val cardname: String = cardrank + "of" + cardsuit
   var cardval: Int = value
 }
 
 class Deck() {
   val cardvals: Map[String, Int] = Map("Ace" -> 1, "Two" -> 2, "Three" -> 3, "Four" -> 4, "Five" -> 5, "Six" -> 6,
     "Seven" -> 7, "Eight" -> 8, "Nine" -> 9, "Ten" -> 10, "Jack" -> 10, "Queen" -> 10, "King" -> 10)
-  val numbers: Array[String] = Array("Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+  val ranks: Array[String] = Array("Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
     "Jack", "Queen", "King")
   val suites: Array[String] = Array("Hearts", "Spades", "Diamonds", "Clubs")
   var deck: ArrayBuffer[Card] = ArrayBuffer()
-  for (number <- numbers) {
+  for (rank <- ranks) {
     for (suit <- suites) {
-      deck = deck :+ new Card(number, suit, cardvals(number))
+      deck = deck :+ new Card(rank, suit, cardvals(rank))
     }
   }
 
@@ -123,10 +123,10 @@ class Player(dealer: Dealer) {
       surrender()
     }
     for (card <- hand.cardsinhand) {
-      if (card.cardnumber == "Ace") {
+      if (card.cardrank == "Ace") {
         aceval = scala.io.StdIn.readLine("What do you want the value of your ace to be (1/11)? ").toInt
         while (acevals.indexOf(aceval) == -1){
-          aceval = scala.io.StdIn.readLine("Invalid response! Please enter a valid number: ").toInt
+          aceval = scala.io.StdIn.readLine("Invalid response! Please enter a valid rank: ").toInt
         }
         card.cardval = aceval
       }
