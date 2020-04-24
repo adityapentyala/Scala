@@ -192,7 +192,7 @@ object blackjack {
     println(s"Dealer's hand's value is: ${dealer.hand.value}, your hand's value is: ${user.hand.value}")
     if (!dealer.win && !user.win) {
       if (user.hand.value > 21 && dealer.hand.value > 21) {
-        println("Well, looks like its a push (draw)!")
+        println("Well, looks like a push (draw)!")
       }
       else if (user.hand.value > 21) {
         user.win = false
@@ -215,7 +215,7 @@ object blackjack {
         check()
       }
       else {
-        println("Well, looks like its a push (draw)!")
+        println("Well, looks like a push (draw)!")
       }
     }
     else {
@@ -254,7 +254,8 @@ object blackjack {
       "  You will NOT get re-prompted. In all other prompts, you will get re-prompted.")
     println("6. You have only 3 ways of playing your hand - you can either hit, stand or surrender. You CANNOT \n" +
       "   double down or split.")
-    println("7. That's just about it. Enjoy!")
+    println("7. The dealer always takes an ace as a 1. The dealer can either stand or hit.")
+    println("8. That's just about it. Enjoy!")
     println()
   }
 
