@@ -72,11 +72,8 @@ class Dealer(deck: Deck) {
 
   def playhand(): Unit = {
     hand.evaluate()
-    if (hand.value < 16) {
+    if (hand.value < 17 && hand.value <= 21) {
       hit()
-    }
-    else if (hand.value > 21) {
-      win = false
     }
     else {
       stand()
@@ -111,6 +108,7 @@ class Player(dealer: Dealer) {
   var aceval = 1
 
   def playhand(): Unit = {
+    val acevals = Array(1, 11)
     var playeraction = scala.io.StdIn.readLine(s"What would you like to do (hit/stand/surrender)? ")
     while (actions.indexOf(playeraction) == -1) {
       playeraction = scala.io.StdIn.readLine("Invalid response! Please enter a valid action: ")
@@ -127,7 +125,7 @@ class Player(dealer: Dealer) {
     for (card <- hand.cardsinhand) {
       if (card.cardnumber == "Ace") {
         aceval = scala.io.StdIn.readLine("What do you want the value of your ace to be (1/11)? ").toInt
-        while (aceval != 1 || aceval != 11){
+        while (acevals.indexOf(aceval) == -1){
           aceval = scala.io.StdIn.readLine("Invalid response! Please enter a valid number: ").toInt
         }
         card.cardval = aceval
@@ -215,7 +213,7 @@ object blackjack {
         check()
       }
       else {
-        println("Well, looks like a push (draw)!")
+        println("Looks like a push (draw)!")
       }
     }
     else {
@@ -226,10 +224,10 @@ object blackjack {
   def check(): Unit = {
     if (dealer.hand.value != user.hand.value) {
       if (dealer.win) {
-        println("Oh no, you lose!")
+        println("Oh no, you lost!")
       }
       else if (user.win) {
-        println("Congratulations, you win!")
+        println("Congratulations, you won!")
       }
     }
 
