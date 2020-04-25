@@ -102,30 +102,30 @@ class Dealer(deck: Deck) {
 }
 
 class Player(dealer: Dealer) {
-  val actions: Array[String] = Array("stand", "hit", "surrender")
+  val actions: Array[String] = Array("stand", "hit", "surrender", "h", "st", "su")
   var hand = new Hand()
   var win: Boolean = false
-  var aceval = 1
+  var aceval: Int = 1
 
   def playhand(): Unit = {
     val acevals = Array(1, 11)
-    var playeraction = scala.io.StdIn.readLine(s"What would you like to do (hit/stand/surrender)? ")
+    var playeraction = scala.io.StdIn.readLine(s"What would you like to do (hit(h)/stand(st)/surrender(su))? ")
     while (actions.indexOf(playeraction) == -1) {
       playeraction = scala.io.StdIn.readLine("Invalid response! Please enter a valid action: ")
     }
-    if (playeraction == "hit") {
+    if (playeraction == "hit" || playeraction == "h") {
       hit()
     }
-    else if (playeraction == "stand") {
+    else if (playeraction == "stand" || playeraction == "st") {
       stand()
     }
-    else if (playeraction == "surrender") {
+    else if (playeraction == "surrender" || playeraction == "su") {
       surrender()
     }
     for (card <- hand.cardsinhand) {
       if (card.cardrank == "Ace") {
         aceval = scala.io.StdIn.readLine("What do you want the value of your ace to be (1/11)? ").toInt
-        while (acevals.indexOf(aceval) == -1){
+        while (acevals.indexOf(aceval) == -1) {
           aceval = scala.io.StdIn.readLine("Invalid response! Please enter a valid rank: ").toInt
         }
         card.cardval = aceval
@@ -141,11 +141,11 @@ class Player(dealer: Dealer) {
   def hit(): Unit = {
     hand.add(dealer.deal())
     hand.printhand()
-    var more = scala.io.StdIn.readLine("Would you like another card (Y/N)? ")
+    var more = scala.io.StdIn.readLine("Would you like another card (Y/N)? ").toUpperCase
     while (more == "Y" && hand.value <= 21) {
       hand.add(dealer.deal())
       hand.printhand()
-      more = scala.io.StdIn.readLine("Would you like another card (Y/N)? ")
+      more = scala.io.StdIn.readLine("Would you like another card (Y/N)? ").toUpperCase
     }
     hand.printhand()
   }
@@ -170,7 +170,7 @@ object blackjack {
       play()
       reset()
       println()
-      playagain = scala.io.StdIn.readLine("Play again (Y/N)? ")
+      playagain = scala.io.StdIn.readLine("Play again (Y/N)? ").toUpperCase
       println()
     }
   }
